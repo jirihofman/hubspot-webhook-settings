@@ -21,6 +21,4 @@ export default function RootLayout({ children }) {
   )
 }
 
-
-
 import './globals.css'
