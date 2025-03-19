@@ -100,7 +100,7 @@ export default async function WebhooksPage() {
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-xl font-semibold">HubSpot Webhook Management</h2>
+        <h2 className="text-xl font-semibold">HubSpot Webhook Management {appId}</h2>
         <LogoutButton />
       </div>
 

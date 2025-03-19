@@ -7,7 +7,6 @@ export default function WebhookSettings({ settings, appId, hapiKey }) {
   const [isEditing, setIsEditing] = useState(false)
   const [formData, setFormData] = useState({
     targetUrl: settings?.targetUrl || "",
-    throttling: settings?.throttling?.period || 10000,
     maxConcurrentRequests: settings?.throttling?.maxConcurrentRequests || 10,
   })
   const [isLoading, setIsLoading] = useState(false)
@@ -26,7 +25,7 @@ export default function WebhookSettings({ settings, appId, hapiKey }) {
     const { name, value } = e.target
     setFormData((prev) => ({
       ...prev,
-      [name]: name === "throttling" || name === "maxConcurrentRequests" ? Number.parseInt(value, 10) : value,
+      [name]: name === "maxConcurrentRequests" ? Number.parseInt(value, 10) : value,
     }))
   }
 
@@ -47,7 +46,6 @@ export default function WebhookSettings({ settings, appId, hapiKey }) {
           settings: {
             targetUrl: formData.targetUrl,
             throttling: {
-              period: formData.throttling,
               maxConcurrentRequests: formData.maxConcurrentRequests,
             },
           },
@@ -146,22 +144,6 @@ export default function WebhookSettings({ settings, appId, hapiKey }) {
             />
           </div>
 
-          <div className="mb-4">
-            <label htmlFor="throttling" className="block text-sm font-medium text-gray-700 mb-1">
-              Throttling Period (ms)
-            </label>
-            <input
-              id="throttling"
-              name="throttling"
-              type="number"
-              min="0"
-              value={formData.throttling}
-              onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              required
-            />
-          </div>
-
           <div className="mb-6">
             <label htmlFor="maxConcurrentRequests" className="block text-sm font-medium text-gray-700 mb-1">
               Max Concurrent Requests
@@ -201,10 +183,6 @@ export default function WebhookSettings({ settings, appId, hapiKey }) {
               <div>
                 <h4 className="text-sm font-medium text-gray-500">Target URL</h4>
                 <p className="mt-1">{settings?.targetUrl || "Not set"}</p>
-              </div>
-              <div>
-                <h4 className="text-sm font-medium text-gray-500">Throttling Period</h4>
-                <p className="mt-1">{settings?.throttling?.period || "Not set"} ms</p>
               </div>
               <div>
                 <h4 className="text-sm font-medium text-gray-500">Max Concurrent Requests</h4>

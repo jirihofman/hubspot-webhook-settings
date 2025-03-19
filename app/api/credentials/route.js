@@ -30,26 +30,31 @@ export async function POST(request) {
     try {
       const response = await fetch(`https://api.hubapi.com/webhooks/v3/${appId}/settings?hapikey=${hapiKey}`)
 
-      // Check if the response is ok before trying to parse JSON
-      if (!response.ok) {
-        // Try to parse error response as JSON, but handle case where it's not valid JSON
-        let errorMessage = "Invalid credentials or API error"
-        try {
-          const errorData = await response.json()
-          errorMessage = errorData.message || errorMessage
-        } catch (parseError) {
-          console.error("Error parsing HubSpot API error response:", parseError)
+      // If we get a 404, it means settings don't exist yet, which is not an error
+      if (response.status === 404) {
+        console.log("No webhook settings found for this app ID")
+      } else {
+        // Check if the response is ok before trying to parse JSON
+        if (!response.ok) {
+          // Try to parse error response as JSON, but handle case where it's not valid JSON
+          let errorMessage = "Invalid credentials or API error"
+          try {
+            const errorData = await response.json()
+            errorMessage = errorData.message || errorMessage
+          } catch (parseError) {
+            console.error("Error parsing HubSpot API error response:", parseError)
+          }
+
+          return NextResponse.json({ message: `HubSpot API Error: ${errorMessage}` }, { status: 401 })
         }
 
-        return NextResponse.json({ message: `HubSpot API Error: ${errorMessage}` }, { status: 401 })
-      }
-
-      // Try to parse the successful response
-      try {
-        await response.json()
-      } catch (parseError) {
-        console.error("Error parsing HubSpot API success response:", parseError)
-        return NextResponse.json({ message: "Received invalid response from HubSpot API" }, { status: 500 })
+        // Try to parse the successful response
+        try {
+          await response.json()
+        } catch (parseError) {
+          console.error("Error parsing HubSpot API success response:", parseError)
+          return NextResponse.json({ message: "Received invalid response from HubSpot API" }, { status: 500 })
+        }
       }
     } catch (fetchError) {
       console.error("Error fetching from HubSpot API:", fetchError)
