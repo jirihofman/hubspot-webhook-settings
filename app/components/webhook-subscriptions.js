@@ -430,4 +430,3 @@ export default function WebhookSubscriptions({ subscriptions, appId, hapiKey }) 
     </div>
   )
 }
-

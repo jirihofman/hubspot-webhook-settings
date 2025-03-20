@@ -4,6 +4,7 @@ import WebhookSettings from "../components/webhook-settings"
 import WebhookSubscriptions from "../components/webhook-subscriptions"
 import LogoutButton from "../components/logout-button"
 
+// TODO: make it a server component
 async function getWebhookSettings(appId, hapiKey) {
   try {
     const response = await fetch(`https://api.hubapi.com/webhooks/v3/${appId}/settings?hapikey=${hapiKey}`, {
@@ -117,4 +118,3 @@ export default async function WebhooksPage() {
     </div>
   )
 }
-

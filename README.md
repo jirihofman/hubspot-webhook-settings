@@ -1,5 +1,8 @@
 # About
-Minimalistic app that lets you manage HubSpot webhooks and subscriptions for your apps. Useful when you manage multiple apps and don't want to go through the HubSpot UI to manage webhooks. The only things you need are your HubSpot API key `hapiKey` and the app's ID `appId`.
+Manage HubSpot webhooks and subscriptions for your apps. 
+
+Useful when you manage multiple apps and don't want to go through the HubSpot UI to manage webhooks. The only things you need are your HubSpot API key `hapiKey` and the app's ID `appId`.
+
 ## Vibe coding
 This project started as a series of prompts to [v0.dev](https://v0.dev). There is probably a lot of unused code, but I don't give a damn. This is my [personal software](https://leerob.com/n/personal-software).
 
@@ -32,6 +35,8 @@ Error parsing error response: SyntaxError: Unexpected end of JSON input at JSON.
 Here I ran out of free messages and started porting it to a Next.js project in its own repo.
 
 This took about an hour to set up properly.
+- `npx create-next-app@latest`
+- copy code from v0.dev
 
 ## Next.js
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).

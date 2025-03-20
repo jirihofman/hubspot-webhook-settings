@@ -17,7 +17,6 @@ export async function DELETE() {
 }
 
 // Update the POST function to better handle the HubSpot API response
-
 export async function POST(request) {
   try {
     const { appId, hapiKey } = await request.json()
