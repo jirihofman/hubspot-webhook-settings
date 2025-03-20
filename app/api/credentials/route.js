@@ -3,7 +3,7 @@ import { NextResponse } from "next/server"
 
 export async function DELETE() {
   try {
-    const cookieStore = cookies()
+    const cookieStore = await cookies()
 
     // Clear the credentials cookies
     cookieStore.delete("hubspot_app_id")
@@ -62,7 +62,7 @@ export async function POST(request) {
     }
 
     // Store credentials in cookies
-    const cookieStore = cookies()
+    const cookieStore = await cookies()
     cookieStore.set("hubspot_app_id", appId, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",

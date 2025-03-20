@@ -2,8 +2,8 @@ import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import CredentialsForm from "./components/credentials-form"
 
-export default function Home() {
-  const cookieStore = cookies()
+export default async function Home() {
+  const cookieStore = await cookies()
   const appId = cookieStore.get("hubspot_app_id")?.value
   const hapiKey = cookieStore.get("hubspot_hapi_key")?.value
 

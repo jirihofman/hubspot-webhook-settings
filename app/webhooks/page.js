@@ -70,7 +70,7 @@ async function getWebhookSubscriptions(appId, hapiKey) {
 }
 
 export default async function WebhooksPage() {
-  const cookieStore = cookies()
+  const cookieStore = await cookies()
   const appId = cookieStore.get("hubspot_app_id")?.value
   const hapiKey = cookieStore.get("hubspot_hapi_key")?.value
 
