@@ -235,7 +235,7 @@ export default function WebhookSubscriptions({ subscriptions, appId, hapiKey }) 
   return (
     <div className="bg-white shadow rounded-lg p-6">
       <div className="flex justify-between items-center mb-4">
-        <h3 className="text-lg font-medium">Event Subscriptions</h3>
+        <h3 className="text-lg font-medium">Event Subscriptions ({subscriptions?.length || 0})</h3>
         <div className="flex space-x-2">
           {!isCreating && !editingId && (
             <button onClick={startCreate} className="btn btn-primary">
